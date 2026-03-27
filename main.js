@@ -6,6 +6,7 @@ escolha = parseInt(
     (2) -> Para Conversor de unidades 
     (3) -> Para Calcular Resistencia do resistor
     (4) -> Para Calcular Lei de Ohm
+    (5) -> Para Calcular Req de Resistores em serie e paralelo
     Digite :`)
 );
 
@@ -22,6 +23,8 @@ switch (escolha) {
     case 4:
         Leiohm();
         break;
+    case 5:
+        CalculoReq_Serie_E_Paralelo();
     default:
         console.log("Digite novamente opção Invalida escolhida!!");
         alert("Digite novamente opção Invalida escolhida!!");

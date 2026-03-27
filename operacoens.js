@@ -15,7 +15,7 @@ function CalculoConsumoKWh() {
         quiloWattsHoraMes = 0,
         custoMensal = 0,
         wattsOUquilowatts = 0;
-    totalReaisTodosOsEletros = 0;
+    let totalReaisTodosOsEletros = 0;
 
     for (let contador = 0; contador < quantidadeEletro; contador++) {
         let nomeEletro = prompt("Digite o nome do eletrodomestico :");
@@ -30,18 +30,18 @@ function CalculoConsumoKWh() {
         diaspMes = parseFloat(prompt("Digite quantos dias em media o eletrodomestico fica ligado por mes :"));
         switch (wattsOUquilowatts) {
             case 1:
-                quilowatts = consumoEletrodomestico / 1000;
+                quilowatts = consumoEletrodomestico / 1000; // Se for watts divide por mil p virar KWh
                 break;
             case 2:
-                quilowatts = consumoEletrodomestico;
+                quilowatts = consumoEletrodomestico; // Se ja ta em KWh so receber na variavel
                 break;
             default:
                 alert("Voce escolheu uma opcao invalida desconsidere o que aparecer apartir de agora, Recomece!!");
                 console.log("Voce escolheu uma opcao invalida desconsidere o que aparecer apartir de agora, Recomece!!");
         }
-        quiloWattsHoraMes = quilowatts * horaspDia * diaspMes;
-        custoMensal = quiloWattsHoraMes * tarifa;
-        totalReaisTodosOsEletros += custoMensal;
+        quiloWattsHoraMes = quilowatts * horaspDia * diaspMes; // Calculando total em KWh gasto por mes
+        custoMensal = quiloWattsHoraMes * tarifa; // Calculando o valor em R$ gasto por mes
+        totalReaisTodosOsEletros += custoMensal; //Juntando o valor gasto por todos os eletrodomesticos.
 
         console.log("Temos seus resultados do/a : " + nomeEletro + "\nSeu gasto total por mes  em Kilowwats/h : " + quiloWattsHoraMes.toFixed(2) + "\nO custo total desse eletrodomestico e : R$" + custoMensal.toFixed(2) + "\nPressione o Enter para ir pro proximo ou ir para os resultados finais:");
 
@@ -120,8 +120,8 @@ function ConversorUnidades() {
         segundoPrefixo = "";
     }
 
-    alert("RESULTADO: \n" + quantidade + " " + primeiroPrefixo + unidadeMedida + " Convertidos para " + segundoPrefixo + unidadeMedida + "\nTeremos : " + base_ParaUnidadeFinal + segundoPrefixo + unidadeMedida);
-    console.log("RESULTADO: \n" + quantidade + " " + primeiroPrefixo + unidadeMedida + " Convertidos para " + segundoPrefixo + unidadeMedida + "\nTeremos : " + base_ParaUnidadeFinal + segundoPrefixo + unidadeMedida);
+    alert("RESULTADO: \n" + quantidade + " " + primeiroPrefixo + " " + unidadeMedida + " Convertidos para " + segundoPrefixo + " " + unidadeMedida + "\nTeremos : " + base_ParaUnidadeFinal + " " + segundoPrefixo + " " + unidadeMedida);
+    console.log("RESULTADO: \n" + quantidade + " " + primeiroPrefixo + " " + unidadeMedida + " Convertidos para " + segundoPrefixo + " " + unidadeMedida + "\nTeremos : " + base_ParaUnidadeFinal + " " + segundoPrefixo + " " + unidadeMedida);
 }
 
 //DESCOBRIR A RESISTENCIA EM OHM DE UM RESISTOR
@@ -130,7 +130,7 @@ function ResistenciaResistor() {
     const faixadeDigito = {
         PRETO: 0,
         MARROM: 1,
-        VEREMLHO: 2,
+        VERMELHO: 2,
         LARANJA: 3,
         AMARELO: 4,
         VERDE: 5,
@@ -143,7 +143,7 @@ function ResistenciaResistor() {
     const faixaMultiplicadora = {
         PRETO: 1,
         MARROM: 10,
-        VEREMLHO: 100,
+        VERMELHO: 100,
         LARANJA: 1000,
         AMARELO: 10000,
         VERDE: 100000,
@@ -157,7 +157,7 @@ function ResistenciaResistor() {
 
     const faixadeTolerancia = {
         MARROM: 1,
-        VEREMLHO: 2,
+        VERMELHO: 2,
         VERDE: 0.5,
         AZUL: 0.25,
         VIOLETA: 0.1,
@@ -196,6 +196,7 @@ function ResistenciaResistor() {
     let faixa2 = prompt("Digite a cor da faixa 2 (IGUAL ESCRITO NO CONSOLE) :");
     let faixa3 = prompt("Digite a cor da faixa 3 (IGUAL ESCRITO NO CONSOLE) :");
     let faixa4 = prompt("Digite a cor da faixa 4 (IGUAL ESCRITO NO CONSOLE) :");
+    let faixa5;
 
     let numeroDasPrimeirasFaixas = 0, //Nuemro juntando as 2 ou 3 primeiras faixas.
         numeroMultiplicado = 0, // Numero das 2 ou 3 primeiras faixas multiplicado pela 3 ou 4 faixa ( O que resulta no nuemro final).
@@ -209,11 +210,11 @@ function ResistenciaResistor() {
             //Temos os Ohm do resistor; Vamos descobrir a tolerancia:
             toleranciapCima = numeroMultiplicado * (1 + faixadeTolerancia[faixa4] / 100);
             toleranciapBaixo = numeroMultiplicado * (1 - faixadeTolerancia[faixa4] / 100);
-            //Isso e apenas para o print para nao precisar repetilo em cada um dos cases
-            faixa5 = faixa4
+            //Proxima linha e apenas para o print para nao precisar repetilo em cada um dos cases
+            faixa5 = faixa4;
             break;
         case 5:
-            let faixa5 = prompt("Digite a cor da faixa 5 (IGUAL ESCRITO NO CONSOLE) :");
+            faixa5 = prompt("Digite a cor da faixa 5 (IGUAL ESCRITO NO CONSOLE) :");
             numeroDasPrimeirasFaixas = faixadeDigito[faixa1] * 100 + faixadeDigito[faixa2] * 10 + faixadeDigito[faixa3];
             numeroMultiplicado = numeroDasPrimeirasFaixas * faixaMultiplicadora[faixa4];
             //Temos os Ohm do resistor; Vamos descobrir a tolerancia:
@@ -224,4 +225,94 @@ function ResistenciaResistor() {
 
     console.log("O Resistor tem como caracteristicas :\nSua resistividade base e : " + numeroMultiplicado + " Ohms\nPodem como tolerancia e " + faixadeTolerancia[faixa5] + " % :\nA resistividade varia de " + toleranciapBaixo + " Ohms a " + toleranciapCima + " Ohms");
     alert("O Resistor tem como caracteristicas :\nSua resistividade base e : " + numeroMultiplicado + " Ohms\nPodem como tolerancia e " + faixadeTolerancia[faixa5] + " % :\nA resistividade varia de " + toleranciapBaixo + " Ohms a " + toleranciapCima + " Ohms");
+}
+
+//FUNCAO PARA A LEI DE OHM
+
+function Leiohm() {
+    let escolha = parseInt(
+        prompt(`
+        Bem vindo a calculadora de LEI DE OHM...
+        Aqui voce tem 3 opçõens de para descobrir :
+
+        (1) -> Para descobrir a Tensão (Volts)
+        (2) -> Para descobrir a Corrente (Amperes)
+        (3) -> Para descobrir a Resistencia (Ohm)
+        
+        Digite : `)
+    );
+
+    let volts = 0, // Criando os tres valores para pedir os que o usuario ja sabe,
+        resistencia = 0, // E dar o que ele ainda nao sabe.
+        amperes = 0,
+        resposta = 0;
+
+    //Para fins esteticos :
+    let unidadeMedida = 0;
+
+    switch (escolha) {
+        case 1:
+            resistencia = parseFloat(prompt("Digite a Resistencia (Ohm) : "));
+            amperes = parseFloat(prompt("Digite a Corrente (Amperes) : "));
+
+            //Formula de Ohm
+            volts = resistencia * amperes;
+            resposta = volts;
+            unidadeMedida = "Volts";
+            break;
+        case 2:
+            volts = parseFloat(prompt("Digite a Tensao (Volts) : "));
+            resistencia = parseFloat(prompt("Digite a Resistencia (Ohm) : "));
+
+            //Formula de Ohm
+            amperes = volts / resistencia;
+            resposta = amperes;
+            unidadeMedida = "Amperes";
+            break;
+        case 3:
+            volts = parseFloat(prompt("Digite a Tensao (Volts) : "));
+            amperes = parseFloat(prompt("Digite a Corrente (Amperes) : "));
+
+            //Formula de Ohm
+            resistencia = volts / amperes;
+            resposta = resistencia;
+            unidadeMedida = "ohms";
+            break;
+    }
+    console.log("De acordo com os numero informados a resposta e : " + resposta.toFixed(2) + " " + unidadeMedida);
+    alert("De acordo com os numero informados a resposta e : " + resposta.toFixed(2) + " " + unidadeMedida);
+}
+
+//FUNCAO PARA CALCULAR REQ EM SERIE E PARALELO
+
+function CalculoReq_Serie_E_Paralelo() {
+    let escolha = parseInt(
+        prompt(`
+        Bem vindo a calculadora de Resistencia Equivalente :
+        Aqui voce possui 2 opcoes : 
+        (1) -> Para calcular uma Req em Serie
+        (2) -> Para calcular uma Req em Paralelo `)
+    );
+
+    let qtd = parseInt(prompt("Digite a quantidade de resistores : "));
+
+    let resistores = [];
+    let req = 0, //Vou usar o mesmo nos dois aqui teremos a resposta final
+        soma = 0; // soma usada para REQ em paralelo
+
+    for (let contador = 0; contador < qtd; contador++) {
+        resistores[contador] = parseFloat(prompt("Digite a resistencia do " + (contador + 1) + " resistor : "));
+
+        switch (escolha) {
+            case 1:
+                req += resistores[contador];
+                break;
+            case 2:
+                soma += 1 / resistores[contador];
+                req = 1 / soma; // Aqui isso acontecera todas as vezes que rodar o for entao a ultima resposta sera correta
+                break;
+        }
+    }
+    console.log("A resistencia equivalente e : " + req.toFixed(2) + " Ohms");
+    alert("A resistencia equivalente e : " + req.toFixed(2) + " Ohms");
 }
